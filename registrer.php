@@ -10,7 +10,7 @@
 </head>
 
 <body>
-    <h3>INSCRIPTION</h3>
+    <h2>INSCRIPTION</h2>
 
 
     <table align="center" cellpadding="10">
@@ -135,13 +135,13 @@
 
         <!----- Adresse mail ---------------------------------------------------------->
         <tr>
-            <td>Adresse Mail</td>
+            <td>ADRESSE MAIL</td>
             <td><input type="text" name="Email_Id" maxlength="100" /></td>
         </tr>
 
         <!----- Numéro de téléphone ---------------------------------------------------------->
         <tr>
-            <td>Numero de telephone</td>
+            <td>NUMERO DE TELEPHONE</td>
             <td>
                 <input type="text" name="Mobile_Number" maxlength="10" />
                 (10 nombres max)

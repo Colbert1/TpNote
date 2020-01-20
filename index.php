@@ -24,6 +24,9 @@
                     </div>
                     <button class="btn btn-primary btn-block login-button" type="submit"><i class="fa fa-sign-in"></i>Connexion</button>
                 </form>
+                <form action="registrer.php">
+                    <button class="btn btn-primary btn-block login-button" type="submit"><i class="fa fa-sign-in"></i>S'inscrire</button>
+                </form>
             </div>
 
         </div>

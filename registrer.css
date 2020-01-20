@@ -1,20 +1,20 @@
-h3 {
+h2 {
   font-family: Calibri;
   font-size: 25pt;
   font-style: normal;
   font-weight: bold;
-  color: SlateBlue;
+  background-color: rgb(255, 255, 255);
   text-align: center;
   text-decoration: underline
 }
 
 table {
   font-family: Calibri;
-  color: white;
+  color: rgb(0, 0, 0);
   font-size: 11pt;
   font-style: normal;
   font-weight: bold;
-  background-color: SlateBlue;
+  background-color: aquamarine;
   border-collapse: collapse;
-  border: 2px solid navy
+  border: 2px solid rgb(0, 0, 0)
 }
