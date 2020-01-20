@@ -31,9 +31,11 @@
 include('head.html')?>
     <title>Accueil</title>
 </head>
+<body>
 <div>
 
 <a href="index.php"><input type="button" class="btn" value='Déconnexion'/></a>
+</body>
 </div>
 </html> 
 

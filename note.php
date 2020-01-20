@@ -12,7 +12,7 @@ include("head.html");
                 <th>Note /20</th>
             </tr>
             <?php
-                /*
+            /*
                 echo "<tr><td>";
                 Appel du Nom + Note
                 $sql = $conn->prepare("SELECT * FROM `note` AND convert(TEXT,CHAR)");
