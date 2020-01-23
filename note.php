@@ -29,7 +29,20 @@ include("head.html");
             <div class="login-user">
                 <input type="text" class="form-control" name="Eleve" placeholder="Nom">
                 <select name="Nom" id="Nom">
-                    
+                    <?php
+                    try {
+                        $base = new PDO('mysql:host=192.168.65.206; dbname=EcoleDirecte', 'Colbert', 'Colbert');
+                        $DonneeUser = $base->query("SELECT * from User");
+                        $TabUserIndex = 0;
+                        while ($tab = $DonneeUser->fetch()) {
+                            //ici on creer nos objets User pour chaque tuple de notre requête
+                            //et on les places dans un tableau de User
+                            $TabUser[$TabUserIndex++] = new User($tab['Id_User'], $tab['Nom']);
+                        }
+                    } catch (exception $e) {
+                        $e->getMessage();
+                    }
+                    ?>
                 </select>
             </div>
             <!--Note-->
@@ -64,31 +77,17 @@ include("head.html");
 </body>
 
 </html>
-<!-- //récupération de la liste des users en BDD.
- try {
- $base = new PDO('mysql:host=localhost; dbname=TestProfSN1', 'root', 'root');
- $DonneeBruteUser = $base->query("select * from user");
- $TabUserIndex = 0;
- while ($tab = $DonneeBruteUser->fetch()){
- //ici on creer nos objets User pour chaque tuple de notre requête
- //et on les places dans un tableau de User
- $TabUser[$TabUserIndex++] = new User($tab['ID_User'],$tab['Nom']);
-
- }
- }
- catch(exception $e) {
- $e->getMessage();
- }
 
 
+<!--
  <FORM action="" methode="POST">
  <select name="pets" id="pet-select">
  <?php
- //parcours du tableau de User pour afficher les options de la liste déroulante
- foreach ($TabUser as $objetUser) {
- echo '<option value="'.$objetUser->getId().'">'.$objetUser->getNom().'</option>';
- }
- ?>
+    //parcours du tableau de User pour afficher les options de la liste déroulante
+    foreach ($TabUser as $objetUser) {
+        echo '<option value="' . $objetUser->getId() . '">' . $objetUser->getNom() . '</option>';
+    }
+    ?>
  </select>
  <input type="submit"></input>
  </FORM>
@@ -121,4 +120,5 @@ include("head.html");
  }
 
  }else{echo"Aucun user selectionné";}
- --!>
+ -->
+dddsdszs
