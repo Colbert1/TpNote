@@ -1,7 +1,7 @@
 <?php include('head.html') ?>
 <title>Connexion</title>
+<script type="text/javascript" src="ex.js"></script>
 </head>
-
 <!--Connexion utilisateur-->
 
 <body>

@@ -52,7 +52,7 @@ include('head.html') ?>
 
                 <div class="panel-body">
                     <!--Formulaire POST-->
-                    <form method="post" action="login2.php">
+                    <form method="post" action="consultenote.php">
                         <!--Login-->
                         <div class="login-user">
 

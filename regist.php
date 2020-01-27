@@ -33,7 +33,6 @@ include('head.html') ?>
 <title>Accueil</title>
 </head>
 <div>
-
     <a href="index.php"><input type="button" class="btn" value='Déconnexion' /></a>
 </div>
 

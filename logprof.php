@@ -13,7 +13,7 @@ if (isset($_POST['login'], $_POST['password'])) {
 
     //Connexion à la BDD
 
-    $conn = new PDO('mysql:host=192.168.65.206;dbname=noel;charset=utf8', 'Colbert', 'Colbert');
+    $conn = new PDO('mysql:host=192.168.65.206;dbname=EcoleDirecte;charset=utf8', 'Colbert', 'Colbert');
 
     //Vérification du mdp/login PROFS
     if ($type == 0) {
@@ -52,7 +52,7 @@ include('head.html') ?>
 
                 <div class="panel-body">
                     <!--Formulaire POST-->
-                    <form method="post" action="login2.php">
+                    <form method="post" action="entreenote.php">
                         <!--Login-->
                         <div class="login-user">
 
