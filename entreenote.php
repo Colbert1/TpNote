@@ -31,8 +31,10 @@ if (isset($_POST['Eleve'], $_POST['Note'])) {
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <link rel="stylesheet" href="login.css" />
 </head>
-<?php  /*
+<?php  /*  
 <div>
+
+
         <--Formulaire POST-->
         <form action="noteEnvoie.php" method="post">
             <--Eleve-->
@@ -55,6 +57,9 @@ if (isset($_POST['Eleve'], $_POST['Note'])) {
                     ?>
                 </select>
             </div>
+
+
+
             <--Note-->
             <div class="login-user">
                 <select>
@@ -68,13 +73,15 @@ if (isset($_POST['Eleve'], $_POST['Note'])) {
             <button class="btn btn-primary btn-block login-button" type="submit"><i class="fa fa-sign-in"></i>Enregistrer</button>
         </form>
     </div>
+
+
  <FORM action="" methode="POST">
  <select name="pets" id="pet-select">
  <?php
-    parcours du tableau de User pour afficher les options de la liste déroulante
-    foreach ($TabUser as $objetUser) {
-        echo '<option value="' . $objetUser->getId() . '">' . $objetUser->getNom() . '</option>';
-    } 
+                parcours du tableau de User pour afficher les options de la liste déroulante
+                foreach ($TabUser as $objetUser) {
+                echo '<option value="' . $objetUser->getId() . '">' . $objetUser->getNom() . '</option>';
+                } 
     ?>
  </select>
  <input type="submit"></input>
@@ -84,8 +91,12 @@ if (isset($_POST['Eleve'], $_POST['Note'])) {
  
 
 
- <?php //traitement du formulaire
+ <?php 
+ 
+ //traitement du formulaire
  if (isset($_POST["user"])){
+
+
  //recherche de l'id dans le tableau de user
  foreach ($TabUser as $objetUser) {
  if ($objetUser->getId()==$_POST["user"]){
