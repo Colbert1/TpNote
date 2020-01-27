@@ -34,8 +34,12 @@ if (isset($_POST['Eleve'], $_POST['Note'])) {
 <?php  /*  
 <div>
 
-
+-----ici il faut qu'on puisse rentrer des notes avec le nom des eleves dans un menu deroulant comme avec les notes 
+    la boucle note ligne 67 a 76 tu y touches pas !!!
+-----
         <--Formulaire POST-->
+       +++ note envoie no exist +++
+
         <form action="noteEnvoie.php" method="post">
             <--Eleve-->
             <div class="login-user">
@@ -75,6 +79,9 @@ if (isset($_POST['Eleve'], $_POST['Note'])) {
     </div>
 
 
+
+    
+/*- exemple du cours-*\
  <FORM action="" methode="POST">
  <select name="pets" id="pet-select">
  <?php
