@@ -47,7 +47,7 @@ include('head.html') ?>
 <body>
     <div>
         <div class="login-form">
-            <h2 class="login-titre">- Identification -</h2>
+            <h2 class="login-titre">- Identification Eleve -</h2>
             <div class="panel panel-default">
 
                 <div class="panel-body">
