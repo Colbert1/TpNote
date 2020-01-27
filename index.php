@@ -5,10 +5,10 @@
 <!--Connexion utilisateur-->
 
 <body>
-    <div class="btn">
+    <div>
         <form action="login2.php" method="post">
-            <button type="button" class="btn" name="Prof">Profs</button><!-- lien vers une page logprof.php-->
-            <button type="button" class="btn" name="Eleve">Eleves</button><!-- lien vers une page logeleve.php-->
+            <input type=button onclick=window.location.href='logprof.php' />
+            <input type=button onclick=window.location.href='logeleve.php' />
         </form>
     </div>
 </body>
