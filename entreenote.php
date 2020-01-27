@@ -21,10 +21,21 @@ if (isset($_POST['Eleve'], $_POST['Note'])) {
     // On renvoie vers la page
     exit;
 }
+?>
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <link rel="stylesheet" href="login.css" />
+</head>
+<?php  /*
 <div>
-        <!--Formulaire POST-->
+        <--Formulaire POST-->
         <form action="noteEnvoie.php" method="post">
-            <!--Eleve-->
+            <--Eleve-->
             <div class="login-user">
                 <input type="text" class="form-control" name="Eleve" placeholder="Nom">
                 <select name="Nom" id="Nom">
@@ -44,7 +55,7 @@ if (isset($_POST['Eleve'], $_POST['Note'])) {
                     ?>
                 </select>
             </div>
-            <!--Note-->
+            <--Note-->
             <div class="login-user">
                 <select>
                     <?php
@@ -57,14 +68,13 @@ if (isset($_POST['Eleve'], $_POST['Note'])) {
             <button class="btn btn-primary btn-block login-button" type="submit"><i class="fa fa-sign-in"></i>Enregistrer</button>
         </form>
     </div>
-    <!--
  <FORM action="" methode="POST">
  <select name="pets" id="pet-select">
  <?php
-    /*parcours du tableau de User pour afficher les options de la liste déroulante
+    parcours du tableau de User pour afficher les options de la liste déroulante
     foreach ($TabUser as $objetUser) {
         echo '<option value="' . $objetUser->getId() . '">' . $objetUser->getNom() . '</option>';
-    } */
+    } 
     ?>
  </select>
  <input type="submit"></input>
@@ -74,7 +84,7 @@ if (isset($_POST['Eleve'], $_POST['Note'])) {
  
 
 
- //traitement du formulaire
+ <?php //traitement du formulaire
  if (isset($_POST["user"])){
  //recherche de l'id dans le tableau de user
  foreach ($TabUser as $objetUser) {
@@ -84,4 +94,5 @@ if (isset($_POST['Eleve'], $_POST['Note'])) {
  }
 
  }else{echo"Aucun user selectionné";}
- -->
+ ?>
+ */
