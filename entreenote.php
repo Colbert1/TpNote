@@ -7,6 +7,7 @@ if (isset($_POST['Nom'])) {
     $eNote = $_POST['Note'];
     $conn = new PDO('mysql:host=192.168.65.206;dbname=noel;charset=utf8', 'Colbert', 'Colbert');
     //Ajout de la note -à faire-
+    $recupID = $conn->prepare("SELECT `Eleve`.`Id_Eleve` FROM `Eleve`");
     $sql = $conn->prepare("INSERT INTO `Note`.`` VALUES (?,?)");
     $sql->execute(array($eEleve, $eNote));
     $userexist = $sql->rowCount();
