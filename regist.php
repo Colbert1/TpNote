@@ -22,7 +22,7 @@ if (isset($_POST['Last_Name'])) {
         exit;
     } else {
         session_start();
-        $go = "note.php";
+        $go = "index.php";
         header("location:$go");
         echo "<p>Vous etes bien logu2</p>";
     }
