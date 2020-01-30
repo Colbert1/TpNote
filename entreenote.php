@@ -15,15 +15,16 @@ if (isset($_POST['Nom'])) {
 ?>
 
 
-<?php 
+<?php
 include("head.html");
-include("User.php");?>
+include("User.php"); ?>
 <title>PROF</title>
 </head>
-<body>
-<div>
 
-<!-----ici il faut qu'on puisse rentrer des notes avec le nom des eleves dans un menu deroulant comme avec les notes 
+<body>
+    <div>
+
+        <!-----ici il faut qu'on puisse rentrer des notes avec le nom des eleves dans un menu deroulant comme avec les notes 
     la boucle note ligne 66 a 78 tu y touches pas !!! ----->
         <!--Formulaire POST-->
         <form action="entreenote.php" method="post">
@@ -37,18 +38,18 @@ include("User.php");?>
                         $base = new PDO('mysql:host=192.168.65.206; dbname=EcoleDirecte', 'Colbert', 'Colbert');
                         $DonneeBruteUser = $base->query("SELECT * FROM `Eleve`");
                         $TabUserIndex = 0;
-                        while ($tab = $DonneeBruteUser->fetch()){
-                        //ici on creer nos objets User pour chaque tuple de notre requête
-                        //et on les places dans un tableau de User
-                        $TabUser[$TabUserIndex++] = new User($tab['Id_User'],$tab['Nom']);
+                        while ($tab = $DonneeBruteUser->fetch()) {
+                            //ici on creer nos objets User pour chaque tuple de notre requête
+                            //et on les places dans un tableau de User
+                            $TabUser[$TabUserIndex++] = new User($tab['Id_User'], $tab['Nom']);
                         }
-                    }catch(exception $e){
+                    } catch (exception $e) {
                         $e->getMessage();
                     }
                     //parcours du tableau de User pour afficher les options de la liste déroulante
                     foreach ($TabUser as $objetUser) {
-                        echo '<option value="'.$objetUser->getId().'">'.$objetUser->getNom().'</option>';
-                    }?>
+                        echo '<option value="' . $objetUser->getId() . '">' . $objetUser->getNom() . '</option>';
+                    } ?>
                 </select>
             </div>
 
@@ -68,22 +69,22 @@ include("User.php");?>
         </form>
     </div>
 
- <?php 
- 
- //traitement du formulaire
- if (isset($_POST["user"])){
+    <?php
+
+    //traitement du formulaire
+    if (isset($_POST["user"])) {
 
 
- //recherche de l'id dans le tableau de user
- foreach ($TabUser as $objetUser) {
- if ($objetUser->getId()==$_POST["user"]){
- $objetUser->afficherUser();
- }
- }
-
- }else{
-     //echo"Aucun user selectionné";
-}
- ?>
+        //recherche de l'id dans le tableau de user
+        foreach ($TabUser as $objetUser) {
+            if ($objetUser->getId() == $_POST["user"]) {
+                $objetUser->afficherUser();
+            }
+        }
+    } else {
+        //echo"Aucun user selectionné";
+    }
+    ?>
 </body>
+
 </html>
