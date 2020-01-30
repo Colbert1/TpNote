@@ -15,56 +15,36 @@ if (isset($_POST['Eleve'], $_POST['Note'])) {
     $userexist = $sql->rowCount();
     $userinfo = $sql->fetch();
     include("note.php");
-} else {
-    echo '<p>Vous avez oublié de remplir un champ.</p>';
-    include('note.php');
-    // On renvoie vers la page
-    exit;
 }
 ?>
-<!DOCTYPE html>
-<html lang="en">
 
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <link rel="stylesheet" href="login.css" />
+
+<?php 
+include("head.html");?>
+<title>PROF</title>
 </head>
-<?php  /*  
+<body>
 <div>
 
------ici il faut qu'on puisse rentrer des notes avec le nom des eleves dans un menu deroulant comme avec les notes 
-    la boucle note ligne 67 a 76 tu y touches pas !!!
------
-        <--Formulaire POST-->
-       +++ note envoie no exist +++
-
-        <form action="noteEnvoie.php" method="post">
-            <--Eleve-->
+<!-----ici il faut qu'on puisse rentrer des notes avec le nom des eleves dans un menu deroulant comme avec les notes 
+    la boucle note ligne 66 a 78 tu y touches pas !!! ----->
+        <!--Formulaire POST-->
+        <form action="entreenote.php" method="post">
+            <!--Eleve-->
             <div class="login-user">
                 <input type="text" class="form-control" name="Eleve" placeholder="Nom">
                 <select name="Nom" id="Nom">
                     <?php
-                    try {
                         $base = new PDO('mysql:host=192.168.65.206; dbname=EcoleDirecte', 'Colbert', 'Colbert');
-                        $DonneeUser = $base->query("SELECT * from User");
-                        $TabUserIndex = 0;
-                        while ($tab = $DonneeUser->fetch()) {
-                            //ici on creer nos objets User pour chaque tuple de notre requête
-                            //et on les places dans un tableau de User
-                            $TabUser[$TabUserIndex++] = new User($tab['Id_User'], $tab['Nom']);
-                        }
-                    } catch (exception $e) {
-                        $e->getMessage();
-                    }
+                        $sql2 = $conn->query("SELECT `Nom` FROM `Eleve`");
+                        $userinfo = $sql2->fetch();
                     ?>
                 </select>
             </div>
 
 
 
-            <--Note-->
+            <!--Note-->
             <div class="login-user">
                 <select>
                     <?php
@@ -81,11 +61,11 @@ if (isset($_POST['Eleve'], $_POST['Note'])) {
 
 
     
-/*- exemple du cours-*\
+<!-- exemple du cours-->
  <FORM action="" methode="POST">
  <select name="pets" id="pet-select">
  <?php
-                parcours du tableau de User pour afficher les options de la liste déroulante
+                //parcours du tableau de User pour afficher les options de la liste déroulante
                 foreach ($TabUser as $objetUser) {
                 echo '<option value="' . $objetUser->getId() . '">' . $objetUser->getNom() . '</option>';
                 } 
@@ -111,6 +91,8 @@ if (isset($_POST['Eleve'], $_POST['Note'])) {
  }
  }
 
- }else{echo"Aucun user selectionné";}
+ }else{
+     echo"Aucun user selectionné";}
  ?>
- */
+</body>
+</html>
