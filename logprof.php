@@ -17,7 +17,7 @@ if (isset($_POST['login'], $_POST['password'])) {
 
     //Vérification du mdp/login PROFS
     if ($type == 0) {
-        $sql = $conn->prepare("SELECT * FROM `Prof` where `Nom` = ? and `MotDePasse` = ?");
+        $sql = $conn->prepare("SELECT * FROM `Prof` WHERE `Nom` = ? AND `MotDePasse` = ?");
         $sql->execute(array($login, $password));
         $userexist = $sql->rowCount();
         $userinfo = $sql->fetch();
@@ -28,7 +28,7 @@ if ($userexist == 1) {
     session_start();
     $go = "entreenote.php";
     header("location:$go");
-} else {
+}else{
     echo "<p>Mauvais Mot de passe. Merci de recommencer</p>";
     include('index.php');
     exit;
