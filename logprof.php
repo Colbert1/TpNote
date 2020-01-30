@@ -21,25 +21,19 @@ if (isset($_POST['login'], $_POST['password'])) {
         $sql->execute(array($login, $password));
         $userexist = $sql->rowCount();
         $userinfo = $sql->fetch();
-    } elseif ($type == 1) {
-        $sql = $conn->prepare("SELECT * FROM `Eleve` where `Nom` = ? and `MotDePasse` = ?");
-        $sql->execute(array($login, $password));
-        $userexist = $sql->rowCount();
-        $userinfo = $sql->fetch();
     }
-
-    if ($userexist == 1) {
-        session_start();
-        $go = "note.php";
-        header("location:$go");
-    } else {
-        echo "<p>Mauvais Mot de passe. Merci de recommencer</p>";
-        include('index.php');
-        exit;
-    }
-} else {
-    echo "Il manque des champs";
 }
+
+if ($userexist == 1) {
+    session_start();
+    $go = "entreenote.php";
+    header("location:$go");
+} else {
+    echo "<p>Mauvais Mot de passe. Merci de recommencer</p>";
+    include('index.php');
+    exit;
+}
+
 include('head.html') ?>
 <title>Accueil</title>
 </head>

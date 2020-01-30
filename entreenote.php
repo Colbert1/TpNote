@@ -1,13 +1,13 @@
 <?php
 session_start();
 
-if (isset($_POST['Eleve'], $_POST['Note'])) {
-    extract($_POST);
-    $eEleve = $_POST['Eleve'];
-    $eNote = $_POST['Note'];
+if (isset($_POST['Nom'])) {
+
+    /*$eEleve = $_POST['Eleve'];
+    $eNote = $_POST['Note'];*/
 
     //Ajout de la note -à faire-
-    $sql = $conn->prepare("INSERT INTO `note` VALUES (?,?)");
+    $sql = $conn->prepare("INSERT INTO `Note`.`` VALUES (?,?)");
     $sql->execute(array($eEleve, $eNote));
     $userexist = $sql->rowCount();
     $userinfo = $sql->fetch();
@@ -16,7 +16,8 @@ if (isset($_POST['Eleve'], $_POST['Note'])) {
 
 
 <?php 
-include("head.html");?>
+include("head.html");
+include("User.php");?>
 <title>PROF</title>
 </head>
 <body>
@@ -28,30 +29,26 @@ include("head.html");?>
         <form action="entreenote.php" method="post">
             <!--Eleve-->
             <div class="login-user">
-                <input type="text" class="form-control" name="Eleve" placeholder="Nom">
+                <!--<input type="text" class="form-control" name="Eleve" placeholder="Nom">-->
                 <select name="Nom" id="Nom">
                     <?php
-                    //Connexion à la BDD
-                    $base = new PDO('mysql:host=192.168.65.206; dbname=EcoleDirecte', 'Colbert', 'Colbert');
-                                        
                     //récupération de la liste des users en BDD.
                     try {
-                        $DonneeBruteUser = $base->query("SELECT * from `Eleve`");
+                        $base = new PDO('mysql:host=192.168.65.206; dbname=EcoleDirecte', 'Colbert', 'Colbert');
+                        $DonneeBruteUser = $base->query("SELECT * FROM `Eleve`");
                         $TabUserIndex = 0;
-                    while ($tab = $DonneeBruteUser->fetch()){
-                    //ici on creer nos objets User pour chaque tuple de notre requête
-                    //et on les places dans un tableau de User
-                        $TabUser[$TabUserIndex++] = new User($tab['Id_Eleve'],$tab['Nom']);                
-                    }
+                        while ($tab = $DonneeBruteUser->fetch()){
+                        //ici on creer nos objets User pour chaque tuple de notre requête
+                        //et on les places dans un tableau de User
+                        $TabUser[$TabUserIndex++] = new User($tab['Id_User'],$tab['Nom']);
+                        }
                     }catch(exception $e){
                         $e->getMessage();
                     }
                     //parcours du tableau de User pour afficher les options de la liste déroulante
                     foreach ($TabUser as $objetUser) {
                         echo '<option value="'.$objetUser->getId().'">'.$objetUser->getNom().'</option>';
-                    }
-
-                    ?>
+                    }?>
                 </select>
             </div>
 
@@ -62,7 +59,7 @@ include("head.html");?>
                 <select>
                     <?php
                     for ($i = 0; $i <= 20; $i++) {
-                        echo '<option value="' . $i . '">' . $i . '</option>';
+                        echo '<option name="Note" value="' . $i . '">' . $i . '</option>';
                     }
                     ?>
                 </select>
@@ -70,26 +67,6 @@ include("head.html");?>
             <button class="btn btn-primary btn-block login-button" type="submit"><i class="fa fa-sign-in"></i>Enregistrer</button>
         </form>
     </div>
-
-
-
-    
-<!-- exemple du cours-->
- <FORM action="" methode="POST">
- <select name="pets" id="pet-select">
- <?php
-                //parcours du tableau de User pour afficher les options de la liste déroulante
-                foreach ($TabUser as $objetUser) {
-                echo '<option value="' . $objetUser->getId() . '">' . $objetUser->getNom() . '</option>';
-                } 
-    ?>
- </select>
- <input type="submit"></input>
- </FORM>
-
-
- 
-
 
  <?php 
  
@@ -105,7 +82,8 @@ include("head.html");?>
  }
 
  }else{
-     echo"Aucun user selectionné";}
+     //echo"Aucun user selectionné";
+}
  ?>
 </body>
 </html>

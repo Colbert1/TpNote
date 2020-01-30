@@ -16,12 +16,7 @@ if (isset($_POST['login'], $_POST['password'])) {
     $conn = new PDO('mysql:host=192.168.65.206;dbname=noel;charset=utf8', 'Colbert', 'Colbert');
 
     //Vérification du mdp/login PROFS
-    if ($type == 0) {
-        $sql = $conn->prepare("SELECT * FROM `Prof` where `Nom` = ? and `MotDePasse` = ?");
-        $sql->execute(array($login, $password));
-        $userexist = $sql->rowCount();
-        $userinfo = $sql->fetch();
-    } elseif ($type == 1) {
+    if ($type == 1) {
         $sql = $conn->prepare("SELECT * FROM `Eleve` where `Nom` = ? and `MotDePasse` = ?");
         $sql->execute(array($login, $password));
         $userexist = $sql->rowCount();
@@ -30,14 +25,14 @@ if (isset($_POST['login'], $_POST['password'])) {
 
     if ($userexist == 1) {
         session_start();
-        $go = "note.php";
+        $go = "consultenote.php";
         header("location:$go");
     } else {
         echo "<p>Mauvais Mot de passe. Merci de recommencer</p>";
         include('index.php');
         exit;
     }
-} 
+}
 
 include('head.html') ?>
 <title>Accueil</title>
