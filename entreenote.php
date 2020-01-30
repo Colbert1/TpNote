@@ -3,9 +3,9 @@ session_start();
 
 if (isset($_POST['Nom'])) {
 
-    /*$eEleve = $_POST['Eleve'];
-    $eNote = $_POST['Note'];*/
-
+    $eEleve = $_POST['Eleve'];
+    $eNote = $_POST['Note'];
+    $conn = new PDO('mysql:host=192.168.65.206;dbname=noel;charset=utf8', 'Colbert', 'Colbert');
     //Ajout de la note -à faire-
     $sql = $conn->prepare("INSERT INTO `Note`.`` VALUES (?,?)");
     $sql->execute(array($eEleve, $eNote));
@@ -25,13 +25,13 @@ include("User.php"); ?>
     <div>
 
         <!-----ici il faut qu'on puisse rentrer des notes avec le nom des eleves dans un menu deroulant comme avec les notes 
-    la boucle note ligne 66 a 78 tu y touches pas !!! ----->
+    la boucle note  ----->
         <!--Formulaire POST-->
         <form action="entreenote.php" method="post">
             <!--Eleve-->
             <div class="login-user">
                 <!--<input type="text" class="form-control" name="Eleve" placeholder="Nom">-->
-                <select name="Nom" id="Nom">
+                <select name="Eleve" id="Nom">
                     <?php
                     //récupération de la liste des users en BDD.
                     try {
@@ -72,12 +72,12 @@ include("User.php"); ?>
     <?php
 
     //traitement du formulaire
-    if (isset($_POST["user"])) {
+    if (isset($_POST["User"])) {
 
 
         //recherche de l'id dans le tableau de user
         foreach ($TabUser as $objetUser) {
-            if ($objetUser->getId() == $_POST["user"]) {
+            if ($objetUser->getId() == $_POST["User"]) {
                 $objetUser->afficherUser();
             }
         }
