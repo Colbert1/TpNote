@@ -56,12 +56,12 @@ include('head.html') ?>
                         <!--Login-->
                         <div class="login-user">
 
-                            <input id="txtUser" type="text" class="form-control" name="login" placeholder="Nom">
+                            <input id="txtUser" type="text" class="form-control" name="login" placeholder="Nom" required>
                         </div>
                         <!--Mot de Passe-->
                         <div class="login-password">
 
-                            <input id="txtPassword" type="password" class="form-control" name="password" placeholder="Mot de passe">
+                            <input id="txtPassword" type="password" class="form-control" name="password" placeholder="Mot de passe" required>
                         </div>
                         <button class="btn btn-primary btn-block login-button" type="submit"><i class="fa fa-sign-in"></i>Connexion</button>
                     </form>

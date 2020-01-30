@@ -1,23 +1,31 @@
 <?php
 session_start();
-
 include("head.html"); ?>
 <title>Accueil</title>
 </head>
 
 <body>
-    <div class="container login-form">
-        <h2 class="login-title">- Suppression dans la BDD -</h2>
-        <div class="panel panel-default">
-            <div class="panel-body">
-<form action="" method="POST"></form>
-            <input type="checkbox" value="scales" name="scales[]" checked>
+    <?php
+    $conn = new PDO('mysql:host=192.168.65.206;dbname=noel;charset=utf8', 'Colbert', 'Colbert');
+    $DonneeUser = $conn->query("SELECT * FROM User");
+    $TabUserIndex = 0;
 
-            </form>
-            </div>
+    while ($tab = $DonneeUser->fetch()) {
+        $TabUser[$TabUserIndex++] = new User($tab["Id_User"], $tab["Id_Eleve"]);
+    }
+    ?>
 
-        </div>
-    </div>
+    <h2 class="login-title">- Suppression dans la BDD -</h2>
+    <FORM action="" method="POST">
+        <?php
+        foreach ($TabUser as $objetUser) {
+            echo '<p><input type="checkbox" value="' . $objetUser->getId() . '" name="users[]" />';
+            echo '<label for="coding">' .
+                $objetUser->getNom() . ' </label></p>';
+        }
+        ?>
+        <input type="submit"></input>
+    </FORM>
 </body>
 
 </html>

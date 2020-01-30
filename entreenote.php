@@ -6,15 +6,11 @@ if (isset($_POST['Eleve'], $_POST['Note'])) {
     $eEleve = $_POST['Eleve'];
     $eNote = $_POST['Note'];
 
-    //Connexion à la BDD
-    $conn = new PDO('mysql:host=localhost;dbname=noel', 'Colbert', 'Colbert');
-
     //Ajout de la note -à faire-
     $sql = $conn->prepare("INSERT INTO `note` VALUES (?,?)");
     $sql->execute(array($eEleve, $eNote));
     $userexist = $sql->rowCount();
     $userinfo = $sql->fetch();
-    include("note.php");
 }
 ?>
 
@@ -35,9 +31,26 @@ include("head.html");?>
                 <input type="text" class="form-control" name="Eleve" placeholder="Nom">
                 <select name="Nom" id="Nom">
                     <?php
-                        $base = new PDO('mysql:host=192.168.65.206; dbname=EcoleDirecte', 'Colbert', 'Colbert');
-                        $sql2 = $conn->query("SELECT `Nom` FROM `Eleve`");
-                        $userinfo = $sql2->fetch();
+                    //Connexion à la BDD
+                    $base = new PDO('mysql:host=192.168.65.206; dbname=EcoleDirecte', 'Colbert', 'Colbert');
+                                        
+                    //récupération de la liste des users en BDD.
+                    try {
+                        $DonneeBruteUser = $base->query("SELECT * from `Eleve`");
+                        $TabUserIndex = 0;
+                    while ($tab = $DonneeBruteUser->fetch()){
+                    //ici on creer nos objets User pour chaque tuple de notre requête
+                    //et on les places dans un tableau de User
+                        $TabUser[$TabUserIndex++] = new User($tab['Id_Eleve'],$tab['Nom']);                
+                    }
+                    }catch(exception $e){
+                        $e->getMessage();
+                    }
+                    //parcours du tableau de User pour afficher les options de la liste déroulante
+                    foreach ($TabUser as $objetUser) {
+                        echo '<option value="'.$objetUser->getId().'">'.$objetUser->getNom().'</option>';
+                    }
+
                     ?>
                 </select>
             </div>
