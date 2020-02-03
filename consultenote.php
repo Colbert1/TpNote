@@ -6,6 +6,8 @@ include("head.html");
 
 <body>
     <!-- Il faut que ici on appelle les données rentrées dans entreenote.php -->
+    
+
 </body>
 
 </html>

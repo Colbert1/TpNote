@@ -1,16 +1,16 @@
-<?php
-if (isset($_POST['Prof'])) {
+<?php require("ConnectBDD.php");
+if (isset($_POST['login'])) {
     $type = 0;
-} elseif (isset($_POST['Eleve'])) {
-    $type = 1;
 }
 if (isset($_POST['login'], $_POST['password'])) {
     $login = $_POST['login'];
     $password = $_POST['password'];
-    //Connexion à la BDD
-    $conn = new PDO('mysql:host=192.168.65.206;dbname=EcoleDirecte;charset=utf8', 'Colbert', 'Colbert');
     //Vérification du mdp/login PROFS
     if ($type == 0) {
+
+        if (empty($_POST['login'])) {
+            echo 'passe le login';
+        }
         $sql = $conn->prepare("SELECT * FROM `Prof` where `Nom` = ? and `MotDePasse` = ?");
         $sql->execute(array($login, $password));
         $userexist = $sql->rowCount();
@@ -23,7 +23,7 @@ if (isset($_POST['login'], $_POST['password'])) {
     }
     if ($userexist == 1) {
         session_start();
-        $go = "note.php";
+        $go = "entreenote.php";
         header("location:$go");
     } else {
         echo "<p>Mauvais Mot de passe. Merci de recommencer</p>";
@@ -44,7 +44,7 @@ include('head.html') ?>
             <div class="panel panel-default">
                 <div class="panel-body">
                     <!--Formulaire POST-->
-                    <form method="post" action="entreenote.php">
+                    <form method="post" action="">
                         <!--Login-->
                         <div class="login-user">
 

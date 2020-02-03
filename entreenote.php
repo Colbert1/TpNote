@@ -1,13 +1,11 @@
-<?php
+<?php require("ConnectBDD.php");
 session_start();
 
 if (isset($_POST['Nom'])) {
 
     $eEleve = $_POST['Eleve'];
     $eNote = $_POST['Note'];
-    $conn = new PDO('mysql:host=192.168.65.206;dbname=EcoleDirecte;charset=utf8', 'Colbert', 'Colbert');
     //Ajout de la note -à faire-
-    //$recupID = $conn->prepare("SELECT `Eleve`.`Id_Eleve` FROM `Eleve`.`Nom` WHERE `Eleve`.`Nom` = ?");
     echo "SELECT `Eleve`.`Id_Eleve` FROM `Eleve`.`Nom` WHERE `Eleve`.`Nom` = ".$eEleve."";
     $recupID = $conn->query("SELECT `Eleve`.`Id_Eleve` FROM `Eleve`.`Nom` WHERE `Eleve`.`Nom` = ".$eEleve."");
     $recupID->execute(array($eEleve));
@@ -53,7 +51,7 @@ include("User.php"); ?>
                     }
                     //parcours du tableau de User pour afficher les options de la liste déroulante
                     foreach ($TabUser as $objetUser) {
-                        echo '<option value=".$objetUser->getId().">' . $objetUser->getNom() . '</option>';
+                        echo '<option value=".$objetUser->getId().">' . $objetUser->getNote() . '</option>';
                     } ?>
                 </select>
             </div>
@@ -81,7 +79,7 @@ include("User.php"); ?>
         //recherche de l'id dans le tableau de user
         foreach ($TabUser as $objetUser) {
             if ($objetUser->getId() == $_POST["User"]) {
-                $objetUser->afficherUser();
+                $objetUser->afficherNote();
             }
         }
     }else{

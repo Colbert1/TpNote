@@ -2,31 +2,32 @@
 class User
 {
     private $_id;
-    private $_Nom;
+    private $_Note;
 
-    public function __construct($id, $nom)
+    public function __construct($id, $Note)
     {
         $this->_id = $id;
-        $this->_Nom = $nom;
+        $this->_Note = $Note;
     }
     public function getId()
     {
         return $this->_id;
     }
-    public function getNom()
+    public function getNote()
     {
-        return $this->_Nom;
+        return $this->_Note;
     }
 
-    public function afficherUser(){
-        echo "".$this->_id."".$this->_Nom;
+    public function afficherNote()
+    {
+        echo "" . $this->_id . "" . $this->_Note;
     }
 
-    public function deleteUser(){
-        echo "".$this->_id."".$this->_Nom;
+    public function deleteNote()
+    {
+        echo "" . $this->_id . "" . $this->_Note;
         global $conn;
         $delet = $conn->prepare("DELETE FROM `Note` WHERE `Id_Note` = ?");
         $delet->execute(array($this->_id));
     }
 }
-?> 

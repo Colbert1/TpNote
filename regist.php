@@ -1,18 +1,14 @@
-<?php
+<?php require("ConnectBDD.php");
 if (isset($_POST['Last_Name'])) {
 
-    $LastName = $_POST['Last_Name'];
-    $password = $_POST['password'];
-    $pseudo   = $_POST['Pseudo'];
-    $id       = $_POST['id'];
+    $nom = $_POST['Nom'];
+    $password = $_POST['MotDePasse'];
+    $prenom= $_POST['Prenom'];
 
-    //Connexion à la BDD
-
-    $conn = new PDO('mysql:host=192.168.65.206;dbname=noel;charset=utf8', 'Colbert', 'Colbert');
 
     //Vérification du mdp/login
     $sql = $conn->prepare("INSERT INTO `tbl_user` VALUES ('?','?','?','?')");
-    $sql->execute(array($id, $pseudo, $LastName, $password));
+    $sql->execute(array($prenom, $nom, $password));
     $userexist = $sql->rowCount();
     $userinfo = $sql->fetch();
 

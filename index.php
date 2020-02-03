@@ -1,4 +1,5 @@
-<?php include('head.html') ?>
+<?php require("ConnectBDD.php");
+include('head.html') ?>
 <title>Connexion</title>
 <script type="text/javascript" src="ex.js"></script>
 </head>
