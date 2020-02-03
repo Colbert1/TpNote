@@ -5,16 +5,20 @@ if (isset($_POST['Nom'])) {
 
     $eEleve = $_POST['Eleve'];
     $eNote = $_POST['Note'];
-    $conn = new PDO('mysql:host=192.168.65.206;dbname=noel;charset=utf8', 'Colbert', 'Colbert');
+    $conn = new PDO('mysql:host=192.168.65.206;dbname=EcoleDirecte;charset=utf8', 'Colbert', 'Colbert');
     //Ajout de la note -à faire-
-    $recupID = $conn->prepare("SELECT `Eleve`.`Id_Eleve` FROM `Eleve`");
-    $sql = $conn->prepare("INSERT INTO `Note`.`` VALUES (?,?)");
-    $sql->execute(array($eEleve, $eNote));
-    $userexist = $sql->rowCount();
-    $userinfo = $sql->fetch();
+    //$recupID = $conn->prepare("SELECT `Eleve`.`Id_Eleve` FROM `Eleve`.`Nom` WHERE `Eleve`.`Nom` = ?");
+    echo "SELECT `Eleve`.`Id_Eleve` FROM `Eleve`.`Nom` WHERE `Eleve`.`Nom` = ".$eEleve."";
+    $recupID = $conn->query("SELECT `Eleve`.`Id_Eleve` FROM `Eleve`.`Nom` WHERE `Eleve`.`Nom` = ".$eEleve."");
+    $recupID->execute(array($eEleve));
+    $recupID->fetch();
+
+    $sql = $conn->prepare("INSERT INTO `Note`.`Id_Eleve` AND `Note`.`Note` VALUES (?,?)");
+    $sql->execute(array($recupID,$eNote));
+    $affichageNote = $sql->fetch();
+    echo $affichageNote;
 }
 ?>
-
 
 <?php
 include("head.html");
@@ -49,7 +53,7 @@ include("User.php"); ?>
                     }
                     //parcours du tableau de User pour afficher les options de la liste déroulante
                     foreach ($TabUser as $objetUser) {
-                        echo '<option value="' . $objetUser->getId() . '">' . $objetUser->getNom() . '</option>';
+                        echo '<option value=".$objetUser->getId().">' . $objetUser->getNom() . '</option>';
                     } ?>
                 </select>
             </div>
@@ -74,15 +78,13 @@ include("User.php"); ?>
 
     //traitement du formulaire
     if (isset($_POST["User"])) {
-
-
         //recherche de l'id dans le tableau de user
         foreach ($TabUser as $objetUser) {
             if ($objetUser->getId() == $_POST["User"]) {
                 $objetUser->afficherUser();
             }
         }
-    } else {
+    }else{
         //echo"Aucun user selectionné";
     }
     ?>

@@ -25,8 +25,8 @@ class User
     public function deleteUser(){
         echo "".$this->_id."".$this->_Nom;
         global $conn;
-        $delet = $conn->prepare("DELETE FROM `User` WHERE `Id_User` = ?");
+        $delet = $conn->prepare("DELETE FROM `Note` WHERE `Id_Note` = ?");
         $delet->execute(array($this->_id));
     }
 }
-?>
+?> 
