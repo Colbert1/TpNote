@@ -41,7 +41,6 @@ if (!empty($_POST)) {
         }
     }
 }
-?>
 
 include('head.html') ?>
 <title>Accueil</title>

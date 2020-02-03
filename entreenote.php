@@ -11,7 +11,7 @@ if (isset($_POST['Nom'])) {
     $recupID->execute(array($eEleve));
     $recupID->fetch();
 
-    $sql = $conn->prepare("INSERT INTO `Note`.`Id_Eleve` AND `Note`.`Note` VALUES (?,?)");
+    $sql = $conn->query("INSERT INTO `Note`.`Id_Eleve` AND `Note`.`Note` VALUES (?,?)");
     $sql->execute(array($recupID,$eNote));
     $affichageNote = $sql->fetch();
     echo $affichageNote;
@@ -27,13 +27,12 @@ include("User.php"); ?>
 <body>
     <div>
 
-        <!-----ici il faut qu'on puisse rentrer des notes avec le nom des eleves dans un menu deroulant comme avec les notes 
-    la boucle note  ----->
+        <!-----rentrer des notes avec le nom des eleves dans un menu deroulant----->
+
         <!--Formulaire POST-->
-        <form action="entreenote.php" method="post">
+        <form method="post" action="">
             <!--Eleve-->
             <div class="login-user">
-                <!--<input type="text" class="form-control" name="Eleve" placeholder="Nom">-->
                 <select name="Eleve" id="Nom">
                     <?php
                     //récupération de la liste des users en BDD.
