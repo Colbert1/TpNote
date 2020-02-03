@@ -1,5 +1,48 @@
 <?php require("ConnectBDD.php");
-if (isset($_POST['login'])) {
+require("Connexion.php");
+if (!empty($_POST)) {
+    $u = new Connexion();
+    $valid = true;
+    if (isset($_POST['connexion'])) {
+        $nom = $_POST['login'];
+        $mdp = $_POST['password'];
+
+        if (empty($nom)) {
+            $valid = false;
+            echo "Il y a pas de pseudo.";
+        }
+        if (empty($mdp)) {
+            $valid = false;
+            echo "il y a pas de mdp.";
+        }
+        $verif = $conn->prepare("SELECT * FROM `Prof` WHERE Nom = :Nom");
+        $verif->execute([
+            'Nom' => $nom,
+        ]);
+        $verif = $verif->fetch();
+
+
+        if ($verif['Nom'] == "") {
+            $valid = false;
+            echo "Le pseudo est incorrecte";
+        }
+        if ($verif["MotDePasse"]) {
+            $valid = true;
+            echo 'Le mot de passe est valide !';
+        } else {
+            $valid = false;
+            echo 'Le mot de passe est invalide.';
+        }
+        if ($valid) {
+
+            $u->ConnexionProf($nom);
+            header('Location: entreenote.php');
+            exit;
+        }
+    }
+}
+
+/*if (isset($_POST['login'])) {
     $type = 0;
 }
 if (isset($_POST['login'], $_POST['password'])) {
@@ -32,7 +75,7 @@ if (isset($_POST['login'], $_POST['password'])) {
     }
 } else {
     echo "Il manque des champs";
-}
+}*/
 include('head.html') ?>
 <title>Accueil</title>
 </head>
@@ -55,7 +98,7 @@ include('head.html') ?>
 
                             <input id="txtPassword" type="password" class="form-control" name="password" placeholder="Mot de passe" required>
                         </div>
-                        <button class="btn btn-primary btn-block login-button" type="submit"><i class="fa fa-sign-in"></i>Connexion</button>
+                        <button class="btn btn-primary btn-block login-button" type="submit" name="connexion"><i class="fa fa-sign-in"></i>Connexion</button>
                     </form>
                     <form action="registrer.php">
                         <button class="btn btn-primary btn-block login-button" type="submit"><i class="fa fa-sign-in"></i>S'inscrire</button>
