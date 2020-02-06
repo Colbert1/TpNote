@@ -18,7 +18,7 @@ function PleinModifDiv() {
     }
 }
 function getRandom() {
-    fetch('ex.php').then((resp) => resp.json()).then(function (data) {
+    fetch('api.php').then((resp) => resp.json()).then(function (data) {
         console.log(data);
         UpdateDiv("JSJS", data[0]);
     })
