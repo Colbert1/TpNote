@@ -29,3 +29,6 @@ function getRandom() {
 function UpdateDiv(id, text) {
     var e = document.getElementById(id).innerHTML = text;
 }
+function ChangementPageDeuxSec() {
+    var x = setInterval(getRandom, 2000);
+}

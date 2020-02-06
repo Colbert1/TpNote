@@ -18,10 +18,11 @@
     <div name="Test">Cyril</div>
     <h1 onclick="PleinModifDiv()">Modif plein de div</h1>
     <button onclick="getRandom()">Random</button>
-
     <h1>Salut n°<div id="JSJS"></div>
     </h1>
-    
+    <button onclick="ChangementPageDeuxSec()">2 secondes</button>
+    <p id='p1'></p>
+
 
 
 </body>
