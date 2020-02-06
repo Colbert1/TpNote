@@ -17,11 +17,14 @@
     <div name="Test">Nathan</div>
     <div name="Test">Cyril</div>
     <h1 onclick="PleinModifDiv()">Modif plein de div</h1>
-
-
-
-
-
+    <button onclick="getRandom()">Random</button>
+    <h1>Salut n°<div id="JSJS">
+            <?php
+            $retour[0] = rand(0, 100);
+            echo json_encode($retour);
+            ?>
+        </div>
+    </h1>
 </body>
 
 </html>
