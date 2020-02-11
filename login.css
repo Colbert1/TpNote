@@ -33,3 +33,13 @@ body {
 .login-forgot {
     float: right;
 }
+
+#Note{
+    margin-top: 10px;
+    margin-left: 110px;
+}
+
+#Nom {
+    margin-bottom: 10px;
+    margin-left: 110px;
+}

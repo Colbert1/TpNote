@@ -1,22 +1,18 @@
 <?php require("ConnectBDD.php");
 session_start();
 
-if (isset($_POST['Nom'])) {
+if (isset($_POST['Eleve'])) {
 
     $eEleve = $_POST['Eleve'];
     $eNote = $_POST['Note'];
-    //Ajout de la note -à faire-
-    $recupID = $conn->prepare("SELECT `Eleve`.`Id_Eleve` FROM `Eleve` WHERE `Eleve`.`Nom` = ?");
-    $recupID->execute(array($eEleve));
-    $id = $recupID->fetch();
+    //Ajout de la note -à faire-    
+    $sql_RecupID = $conn->query("SELECT `Eleve`.`Id_Eleve` FROM `Eleve` WHERE `Eleve`.`Nom` = $eEleve");
+    $Id_Eleve = $sql_RecupID->fetch();
+    $sql_RecupID->closeCursor();
 
-    $sql = $conn->query("INSERT INTO `Note`.`Id_Eleve` AND `Note`.`Note` VALUES (?,?)");
-    $sql->execute(array($recupID,$eNote));
-    $affichageNote = $sql->fetch();
-    echo $affichageNote;
+    $sql = $conn->query("INSERT INTO `Note` (`Id_Note`, `Id_Prof`, `Id_Eleve`, `Note`) VALUES (NULL,``,`$Id_Eleve`,`$eNote`) WHERE `Note`.`Id_Eleve` = `Eleve`.`Id_Eleve` AND `Note`.`Id_Prof` = `Prof`.`Id_Prof`");
+    echo "Rentrée réalisée";
 }
-$sql = $conn->prepare("INSERT INTO `Note` (`Id_Note`, `Id_Prof`, `Id_Eleve`, `Note`) VALUES (NULL, ?,?,?)");
-$sql->execute(array($_SESSION['Id_Prof'],$id['Id_Eleve'],$eNote));
 ?>
 
 
@@ -61,10 +57,11 @@ include("User.php"); ?>
 
             <!--Note-->
             <div class="login-user">
-                <select>
+                <select name="Note" id="Note">
                     <?php
                     for ($i = 0; $i <= 20; $i++) {
-                        echo '<option name="Note" value="' . $i . '">' . $i . '</option>';
+                        //echo '<option name="Note" value="' . $i . '">' . $i . '</option>';
+                        echo '<option value="Note">' . $i . '</option>';
                     }
                     ?>
                 </select>
@@ -84,7 +81,7 @@ include("User.php"); ?>
             }
         }
     }else{
-        //echo"Aucun user selectionné";
+        echo"Aucun user selectionné";
     }
     ?>
 </body>

@@ -20,7 +20,7 @@ class User
 
     public function afficherNote()
     {
-        echo "" . $this->_id . "" . $this->_Note;
+        echo "Eleve numero " . $this->_id . " : " . $this->_Note;
     }
 
     public function deleteNote()
