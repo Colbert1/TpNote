@@ -6,11 +6,15 @@ if (isset($_POST['Eleve'])) {
     $eEleve = $_POST['Eleve'];
     $eNote = $_POST['Note'];
     //Ajout de la note -à faire-    
-    $sql_RecupID = $conn->query("SELECT `Eleve`.`Id_Eleve` FROM `Eleve` WHERE `Eleve`.`Nom` = $eEleve");
+    $sql_RecupID = $conn->query("SELECT `Id_Eleve` FROM `Eleve` WHERE `Eleve`.`Nom` = $_POST[Eleve]");
     $Id_Eleve = $sql_RecupID->fetch();
     $sql_RecupID->closeCursor();
 
-    $sql = $conn->query("INSERT INTO `Note` (`Id_Note`, `Id_Prof`, `Id_Eleve`, `Note`) VALUES (NULL,``,`$Id_Eleve`,`$eNote`) WHERE `Note`.`Id_Eleve` = `Eleve`.`Id_Eleve` AND `Note`.`Id_Prof` = `Prof`.`Id_Prof`");
+    try {
+    $sql = $conn->query("INSERT INTO `Note` (`Id_Prof`, `Id_Eleve`, `Note`) VALUES ($_SESSION[Id_Prof],$Id_Eleve,$eNote )");
+    }catch(exception $e){
+        $e->getMessage();
+    }
     echo "Rentrée réalisée";
 }
 ?>
@@ -35,8 +39,7 @@ include("User.php"); ?>
                     <?php
                     //récupération de la liste des users en BDD.
                     try {
-                        $base = new PDO('mysql:host=192.168.65.206; dbname=EcoleDirecte', 'Colbert', 'Colbert');
-                        $DonneeBruteUser = $base->query("SELECT * FROM `Eleve`");
+                        $DonneeBruteUser = $conn->query("SELECT * FROM `Eleve`");
                         $TabUserIndex = 0;
                         while ($tab = $DonneeBruteUser->fetch()) {
                             //ici on creer nos objets User pour chaque tuple de notre requête

@@ -27,6 +27,7 @@ if (!empty($_POST)) {
             echo "Le pseudo est incorrecte";
         }
         if ($verif["MotDePasse"]) {
+            
             $valid = true;
             echo 'Le mot de passe est valide !';
         } else {
