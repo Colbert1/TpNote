@@ -27,10 +27,10 @@
 
         <!----- Pseudo ---------------------------------------------------------->
         <tr>
-            <td>PSEUDO</td>
+            <td>PRENOM</td>
             <td>
-                <input type="text" name="Pseudo" maxlength="12" />
-                (max 12 caracteres a-z et A-Z)
+                <input type="text" name="Name" maxlength="12" />
+                (max 12 caracteres)
             </td>
         </tr>
 
@@ -39,19 +39,9 @@
         <td>MOT DE PASSE</td>
         <td>
             <input type="password" name="password" maxlength="12" />
-            (max 12 caracteres a-z et A-Z)
+            (max 12 caracteres)
         </td>
         </tr>
-
-        <!---- ID ------------------------------------------------------->
-
-        <td>ID</td>
-        <td>
-            <input type="id" name="id" maxlength="12" />
-            (max 12 caracteres a-z et A-Z)
-        </td>
-        </tr>
-
         <!----- Submit et Reset ------------------------------------------------->
         <tr>
             <td colspan="2" align="center">

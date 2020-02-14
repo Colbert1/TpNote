@@ -1,9 +1,11 @@
+body{
+  background-color: rgb(127, 214, 255);
+}
 h2 {
   font-family: Calibri;
   font-size: 25pt;
   font-style: normal;
   font-weight: bold;
-  background-color: rgb(255, 255, 255);
   text-align: center;
   text-decoration: underline
 }
@@ -14,7 +16,5 @@ table {
   font-size: 11pt;
   font-style: normal;
   font-weight: bold;
-  background-color: aquamarine;
-  border-collapse: collapse;
-  border: 2px solid rgb(0, 0, 0)
+  background-color: rgb(127, 214, 255);
 }

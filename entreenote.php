@@ -11,7 +11,8 @@ if (isset($_POST['Eleve'])) {
     $sql_RecupID->closeCursor();
 
     try {
-    $sql = $conn->query("INSERT INTO `Note` (`Id_Prof`, `Id_Eleve`, `Note`) VALUES ($_SESSION[Id_Prof],$Id_Eleve,$eNote )");
+        echo "INSERT INTO `Note` (`Id_Prof`, `Id_Eleve`, `Note`) VALUES (".$_SESSION['Id_Prof'].",".$Id_Eleve.",".$eNote." )";
+    $sql = $conn->query("INSERT INTO `Note` (`Id_Prof`, `Id_Eleve`, `Note`) VALUES (".$_SESSION['Id_Prof'].",".$Id_Eleve.",".$eNote." )");
     }catch(exception $e){
         $e->getMessage();
     }
