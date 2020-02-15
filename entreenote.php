@@ -11,12 +11,13 @@ if (isset($_POST['Eleve'])) {
     $sql_RecupID->closeCursor();
 
     try {
-        echo "INSERT INTO `Note` (`Id_Prof`, `Id_Eleve`, `Note`) VALUES (".$_SESSION['Id_Prof'].",".$Id_Eleve.",".$eNote." )";
-    $sql = $conn->query("INSERT INTO `Note` (`Id_Prof`, `Id_Eleve`, `Note`) VALUES (".$_SESSION['Id_Prof'].",".$Id_Eleve.",".$eNote." )");
-    }catch(exception $e){
+       // echo "INSERT INTO `Note` (`Id_Prof`, `Id_Eleve`, `Note`) VALUES (" . $_SESSION['Id_Prof'] . "," . $eEleve . "," . $eNote . " )";
+        $sql = $conn->query("INSERT INTO `Note` (`Id_Prof`, `Id_Eleve`, `Note`) VALUES (" . $_SESSION['Id_Prof'] . "," . $eEleve . "," . $eNote . " )");
+    } catch (exception $e) {
         $e->getMessage();
     }
     echo "Rentrée réalisée";
+    echo "";
 }
 ?>
 
@@ -38,21 +39,17 @@ include("User.php"); ?>
             <div class="login-user">
                 <select name="Eleve" id="Nom">
                     <?php
-                    //récupération de la liste des users en BDD.
                     try {
                         $DonneeBruteUser = $conn->query("SELECT * FROM `Eleve`");
                         $TabUserIndex = 0;
                         while ($tab = $DonneeBruteUser->fetch()) {
-                            //ici on creer nos objets User pour chaque tuple de notre requête
-                            //et on les places dans un tableau de User
                             $TabUser[$TabUserIndex++] = new User($tab['Id_Eleve'], $tab['Nom']);
                         }
                     } catch (exception $e) {
                         $e->getMessage();
                     }
-                    //parcours du tableau de User pour afficher les options de la liste déroulante
                     foreach ($TabUser as $objetUser) {
-                        echo '<option value='.$objetUser->getId().'>'.$objetUser->getNote().'</option>';
+                        echo '<option value=' . $objetUser->getId() . '>' . $objetUser->getNote() . '</option>';
                     } ?>
                 </select>
             </div>
@@ -64,7 +61,6 @@ include("User.php"); ?>
                 <select name="Note" id="Note">
                     <?php
                     for ($i = 0; $i <= 20; $i++) {
-                        //echo '<option name="Note" value="' . $i . '">' . $i . '</option>';
                         echo '<option value="Note">' . $i . '</option>';
                     }
                     ?>
@@ -75,17 +71,14 @@ include("User.php"); ?>
     </div>
 
     <?php
-
-    //traitement du formulaire
     if (isset($_POST["Eleve"])) {
-        //recherche de l'id dans le tableau de user
         foreach ($TabUser as $objetUser) {
             if ($objetUser->getId() == $_POST["Eleve"]) {
                 $objetUser->afficherNote();
             }
         }
-    }else{
-        echo"Aucun user selectionné";
+    } else {
+        echo "Aucun user selectionné";
     }
     ?>
 </body>
