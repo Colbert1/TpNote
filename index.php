@@ -6,8 +6,9 @@ include('head.html') ?>
 <!--Connexion utilisateur-->
 
 <body>
-<p id="demo"></p>
-    <div>
+<div id="demo"></div>
+<h1>Bulletin de notes</h1>
+    <div id="boutonConnect">
         <button onclick="window.location.href = 'logprof.php';">Prof</button>
         <button onclick="window.location.href = 'logeleve.php';">Eleve</button>
     </div>
